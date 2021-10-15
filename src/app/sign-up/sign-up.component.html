@@ -1,0 +1,46 @@
+<div class="signup-wrapper">
+    <div class="card">
+        <div class="card-body">
+            <form class="form-signup" (ngSubmit)="onSubmit(signUpForm)" #signUpForm="ngForm">
+                <h1 class="h3 mb-3 fw-normal" aria-disabled="true">Sign Up</h1>
+            
+                <div class="alert alert-info"  *ngIf="responseMessage">
+                  {{response}}
+                </div>
+
+                <div class="form-floating">
+                  <input name="username" class="form-control" placeholder="Username" id="floatingInput"  ngModel>
+                  <label for="floatingInput">Username</label>
+                </div>
+
+                <div class="form-floating">
+                  <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required ngModel>
+                  <label for="floatingPassword">Password</label>
+                </div>
+            
+                <div class="form-floating">
+                    <input type="password" name="confirmPassword" class="form-control" id="floatingConfirmPassword" placeholder="Confirm Password" required ngModel>
+                    <label for="floatingPassword">Confirm Password</label>
+                  </div>
+              
+              
+                <button class="w-100 btn btn-lg btn-primary"  type="submit">Sign Up</button>
+                <div class="alert alert-danger" role="alert" *ngIf="InvalidCredientials">
+                  Invalid Username or Password
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="InvalidForm">
+                  Please Fill all fields
+                </div>
+                <div class="alert alert-danger" role="alert" *ngIf="passwordNotMatch">
+                  Password doesn't match
+                </div>
+                <h5 class="small">Already have a Account <a routerLink="">Sign-In</a> here</h5>
+
+              </form>
+        </div>
+    </div>
+   </div>
+
+
+
+  
