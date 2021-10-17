@@ -22,8 +22,7 @@
 
 </head>
 
-<body  *ngIf="authenticationServices.IsAuthenticated">
-  <div class="page-wrapper chiller-theme toggled" >
+  <div class="page-wrapper chiller-theme toggled" *ngIf="IsAuthenticated">
     <a id="show-sidebar" class="btn btn-sm btn-dark" href="#">
       <i class="fas fa-bars"></i>
     </a>
@@ -83,7 +82,7 @@
             
                 <ul>
                   <li>
-                    <a href="#">Edit Profile
+                    <a routerLink="editProfile"> Profile
 
                     </a>
                   </li>
@@ -120,8 +119,7 @@
     integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
 
-</body>
 
-</html>
 
 <router-outlet></router-outlet>
+</html>

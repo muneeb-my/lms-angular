@@ -1,51 +1,48 @@
 <div class="signup-wrapper">
-    <div class="card">
-        <div class="card-body">
-            <form class="form-signup" (ngSubmit)="onSubmit(leaveForm)" #leaveForm="ngForm">
-                <h1 class="h3 mb-3 fw-normal" aria-disabled="true">Apply New Leave</h1>
-            
-                <div class="alert alert-info"  *ngIf="responseMessage">
-                  {{response}}
-                </div>
+  <div class="card">
+    <div class="card-body">
+      <form class="form-signup" (ngSubmit)="onSubmit(leaveForm)" #leaveForm="ngForm">
+        <h1 class="h3 mb-3 fw-normal" aria-disabled="true">Apply New Leave</h1>
 
-                
-                <input type="hidden" name="userID" id="userID" value="123" readonly class="form-control floating" ngModel>
-
-
-
-                  <div class="form-floating">
-                    <input type="date" name="fromDate" class="form-control" id="fromDate" placeholder="From Date" required ngModel>
-                    <label for="fromDate">From Date</label>
-                  </div>
-              
-                  <div class="form-floating">
-                    <input type="date" name="toDate" class="form-control" id="toDate" placeholder="To Date" required ngModel>
-                    <label for="toDate">To Date</label>
-                  </div>
-              
-                  <div class="form-floating">
-                  <input name="typeOfLeave" class="form-control" placeholder="Type Of Leave" id="floatingInput"  ngModel>
-                  <label for="floatingInput">Type Of Leave</label>
-                </div>
-
-                <div class="form-floating">
-                  <textarea name="reasonOfLeave" class="form-control" id="reasonOfLeave" rows="50" cols="30"  placeholder="Reason Of Leave" required ngModel></textarea>
-                  <label for="reasonOfLeave">Reason Of Leave</label>
-                </div>
-            
-                
-                <button class="w-100 btn btn-lg btn-primary"  type="submit">Submit Leave</button>
-              
-                <div class="alert alert-danger" role="alert" *ngIf="InvalidForm">
-                  Please Fill all fields
-                </div>
-                
-
-              </form>
+        <div class="alert alert-info" *ngIf="responseMessage">
+          {{response}}
         </div>
-    </div> 
-   </div>
 
 
 
-  
+
+        <label class="col-form-label">From Date <span class="text-danger">*</span></label>
+
+        <div class="form-floating">
+          <input type="date" name="fromDate" class="form-control" id="fromDate" placeholder="From Date" required
+            ngModel>
+        </div>
+        <label class="col-form-label">To Date <span class="text-danger">*</span></label>
+
+        <div class="form-floating">
+          <input type="date" name="toDate" class="form-control" id="toDate" placeholder="To Date" required ngModel>
+        </div>
+        <label class="col-form-label">Type Of Leave <span class="text-danger">*</span></label>
+
+        <div class="form-floating">
+          <input name="typeOfLeave" class="form-control" placeholder="Type Of Leave" id="floatingInput" ngModel>
+        </div>
+        <label class="col-form-label">Reason Of Leave<span class="text-danger">*</span></label>
+
+        <div class="form-floating">
+          <textarea name="reasonOfLeave" class="form-control" id="reasonOfLeave" rows="50" cols="30"
+            placeholder="Reason Of Leave" required ngModel></textarea>
+        </div>
+
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Submit Leave</button>
+
+        <div class="alert alert-danger" role="alert" *ngIf="InvalidForm">
+          Please Fill all fields
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+</div>

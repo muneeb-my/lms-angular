@@ -1,0 +1,48 @@
+<form class="edit-form" (ngSubmit)="onSubmit(leaveForm)" #leaveForm="ngForm">
+    <h1 class="h3 mb-3 fw-normal" aria-disabled="true">Edit Leave</h1>
+
+    <div class="alert alert-info" *ngIf="responseMessage">
+        {{response}}
+    </div>
+
+    <input type="hidden" name="leaveID" id="leaveID" [(ngModel)]="editData.leaveID" readonly class="form-control floating" ngModel>
+
+
+    <input type="hidden" name="userID" id="userID" [(ngModel)]="editData.userID" readonly class="form-control floating" ngModel>
+
+
+    <label class="col-form-label">From Date <span class="text-danger">*</span></label>
+    <div class="form-floating">
+        <input type="date" name="fromDate" class="form-control"   [(ngModel)]="editData.fromDate"  id="fromDate" placeholder="From Date" required ngModel>
+        <label for="fromDate">From Date</label>
+    </div>
+
+    <label class="col-form-label">To Date <span class="text-danger">*</span></label>
+    <div class="form-floating">
+        <input type="date" name="toDate" class="form-control" id="toDate"  [(ngModel)]="editData.toDate" placeholder="To Date" required ngModel>
+        <label for="toDate">To Date</label>
+    </div>
+
+    <label class="col-form-label">Type Of Leave <span class="text-danger">*</span></label>
+    <div class="form-floating">
+       <input name="typeOfLeave" class="form-control" [(ngModel)]="editData.typeOfLeave" id="typeOfLeave" ngModel>
+        <label for="floatingInput">Type Of Leave</label>
+    </div>
+
+    <label class="col-form-label">Reason Of Leave <span class="text-danger">*</span></label>
+    <div class="form-floating">
+        <textarea name="reasonOfLeave" class="form-control" id="reasonOfLeave"  rows="50" cols="30"
+            placeholder="Reason Of Leave" required [(ngModel)]="editData.reasonOfLeave"></textarea>
+        <label for="reasonOfLeave">Reason Of Leave</label>
+    </div>
+
+
+
+    <!-- <button class="w-100 btn btn-lg btn-primary" type="submit">Update Leave</button> -->
+    <button type="submit" class="w-100 btn btn-lg btn-primary" mat-dialog-close [disabled]="InvalidForm" mat-button>Update Leave</button>
+
+    <div class="alert alert-danger" role="alert" *ngIf="InvalidForm">
+        Please Fill all fields
+    </div>
+
+</form>

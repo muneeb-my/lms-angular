@@ -21,9 +21,12 @@ import { Observable } from 'rxjs';
     responseMessage = false;
     response: String;
   
-    constructor(private _apiservice: ApiService, private router : Router) { }
+    constructor(private _apiservice: ApiService, private router : Router) { 
+
+    }
   
     ngOnInit(): void {
+
     }
   
     postUrl: string = "http://localhost:8084/api/v1/leave";
@@ -41,11 +44,10 @@ import { Observable } from 'rxjs';
   
       else {
   
-        var data = new LeaveModel("123123",FormDetails.value.fromDate,FormDetails.value.toDate,
+        var data = new LeaveModel(localStorage.getItem('userID'),FormDetails.value.fromDate,FormDetails.value.toDate,
           FormDetails.value.typeOfLeave,FormDetails.value.reasonOfLeave
           );
   
-          console.log(data);
 
         this._apiservice.postLeaveApi(this.postUrl, data).subscribe(
   
@@ -74,6 +76,7 @@ import { Observable } from 'rxjs';
       }
   
     }
-  
+
+
   }
   

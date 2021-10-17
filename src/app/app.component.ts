@@ -13,11 +13,14 @@ declare const $: any;
 export class AppComponent {
   title = 'lms';
 
+  IsAuthenticated = false;
+
    authenticationServices:AuthenticationService ;
 
   constructor(private authenticationService: AuthenticationService){
 
 
+   this.IsAuthenticated = localStorage.getItem('IsAuthenticated') == "true";
 
     
     jQuery(function ($) {

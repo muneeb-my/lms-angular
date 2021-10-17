@@ -9,13 +9,24 @@
                 </div>
 
                 <div class="form-floating">
-                  <input name="username" class="form-control" placeholder="Username" id="floatingInput"  ngModel>
+                  <input name="username" class="form-control" minlength="5" maxlength="50" placeholder="Username" id="floatingInput"  ngModel>
                   <label for="floatingInput">Username</label>
+                  <div class="alert alert-danger" role="alert" *ngIf="InvalidMinLength">
+                   Username should be Minimum 5 characters
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="InvalidMaxLength">
+                    Username should be Maximum 50 characters
+                   </div>
                 </div>
 
+                
+
                 <div class="form-floating">
-                  <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required ngModel>
+                  <input type="password" name="password" minlength="5" class="form-control" id="floatingPassword" placeholder="Password" required ngModel>
                   <label for="floatingPassword">Password</label>
+                  <div class="alert alert-danger" role="alert" *ngIf="InvalidMinLengthPass">
+                    Password should be Minimum 5 characters
+                   </div>
                 </div>
             
                 <div class="form-floating">

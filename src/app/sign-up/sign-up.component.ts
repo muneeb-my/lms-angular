@@ -13,6 +13,10 @@ import { delay } from 'rxjs/operators';
 export class SignUpComponent implements OnInit {
   InvalidCredientials = false;
   InvalidForm = false;
+  InvalidMinLength = false;
+  InvalidMaxLength = false;
+  InvalidMinLengthPass = false;
+
   passwordNotMatch = false;
   error: String;
   responseMessage = false;
@@ -28,6 +32,25 @@ export class SignUpComponent implements OnInit {
   onSubmit(signInFormDetails: NgForm) {
 
 
+    if(signInFormDetails.value.username.length < 5){
+
+      this.InvalidMinLength = true;
+
+    }
+
+
+    if(signInFormDetails.value.password.length  < 5){
+
+      this.InvalidMinLengthPass = true;
+
+
+    }
+
+    if(signInFormDetails.value.username.length  > 50){
+
+      this.InvalidMaxLength = true;
+
+    }
 
     if (signInFormDetails.status == "INVALID") {
 
@@ -46,6 +69,15 @@ export class SignUpComponent implements OnInit {
       return;
     }
     else {
+
+      this.passwordNotMatch = false;
+      this.InvalidForm = false;
+      this.InvalidCredientials = false;
+      this.InvalidMaxLength = false;
+      this.InvalidMinLengthPass = false;
+      this.InvalidMinLength = false;
+
+
 
       var data = new signInData(signInFormDetails.value.username, signInFormDetails.value.password);
 

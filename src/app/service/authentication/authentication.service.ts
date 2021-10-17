@@ -12,45 +12,49 @@ export class AuthenticationService {
 
   constructor(private _apiservice: ApiService, private router: Router) { }
 
-  IsAuthenticated = false;
+  IsAuthenticated = localStorage.getItem('IsAuthenticated');
   responseCode: string;
   dataCode: string;
 
   authenticate(signInDatas: signInData) {
 
-    if (this.checkCredentials(signInDatas) == "SUCCESS" ) {
+    this._apiservice.LoginUserApi(this.loginUrl, signInDatas).subscribe(res => {
 
-      this.IsAuthenticated = true;
-      this.router.navigate(['leave']);
-      
-    }
+      if (res.code == "SUCCESS") {
+
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('userID', res.userID);
+        localStorage.setItem('IsAuthenticated', "true");
+
+        console.log(res);
+        setTimeout(()=>{ 
+          this.router.navigate(['leave']);
+          location.href  = "/leave" ;
+
+
+         },     100
+        );
+     
+
+      }
+
+
+    },
+      err => this.responseCode = err,
+
+    )
+
+
 
   }
 
-  private checkCredentials(signInDatas: signInData) {
 
-    let promise = new Promise((resolve, reject)=>{
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('userID');
+    localStorage.removeItem('IsAuthenticated');
 
-
-  
-    this._apiservice.postUserApi(this.loginUrl, signInDatas)
-      .toPromise() .then (res => {this.responseCode = res.code;
-      console.log(res);
-      },
-        err => this.responseCode = err,
-
-      )
-
-    console.log(this.responseCode);
-    
-
-    })
-
-    return this.responseCode;
-  }
-
-  logout(){
-    this.IsAuthenticated = false;
+    location.reload();
     this.router.navigate(['']);
   }
 }

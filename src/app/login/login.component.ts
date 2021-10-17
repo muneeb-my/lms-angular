@@ -34,11 +34,20 @@ export class LoginComponent implements OnInit {
     }
 
     var signInDatas = new signInData(signInFormDetails.value.username, signInFormDetails.value.password);
-    (this.authenticationService.authenticate(signInDatas))
-     
-     setTimeout(()=>{  
 
-      if(this.authenticationService.IsAuthenticated){
+    this.InvalidCredientials = false;
+    this.InvalidForm = false;
+
+    setTimeout(() => {
+      (this.authenticationService.authenticate(signInDatas))
+
+   
+
+    }, 100
+    );
+
+    setTimeout(() => {
+      if (this.authenticationService.IsAuthenticated) {
         this.InvalidCredientials = false;
         this.InvalidForm = false;
         return;
@@ -50,10 +59,13 @@ export class LoginComponent implements OnInit {
         return;
   
       }
+   
 
-    },     100
+    }, 1000
     );
-    
+
+   
+
 
 
 

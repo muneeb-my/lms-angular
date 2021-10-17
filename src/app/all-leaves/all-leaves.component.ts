@@ -1,6 +1,8 @@
 import { ApiService } from './../service/api.service';
 import { Component, OnInit } from '@angular/core';
 import { formatDate } from '@angular/common';
+import { MatDialog } from '@angular/material/dialog';
+import { EditLeaveComponent } from '../popup/editLeave/edit-leave/edit-leave.component';
 
 @Component({
   selector: 'lms-all-leaves',
@@ -11,8 +13,17 @@ export class AllLeavesComponent implements OnInit {
 
   getLeaveURL = 'http://localhost:8084/api/v1/leave';
   delId: any;
-  constructor(private _apiService: ApiService) {
+  constructor(private _apiService: ApiService, public dialog: MatDialog) {  }
+  
+  openLeaveDialog(itemData: any) {
 
+    this.dialog.open(EditLeaveComponent, {
+      width: '40%',
+      height: '100%',
+      data: {
+        itemData
+      }
+    });
 
   }
 
@@ -21,14 +32,12 @@ export class AllLeavesComponent implements OnInit {
   locale = 'en-US';
 
   public data = [];
-
   public datasize = -1;
-
   dtOptions: any = {};
+
   ngOnInit() {
 
-   this. callApi();
-
+    this.callApi();
 
     setTimeout(() => {
       this.dtOptions = {
@@ -37,14 +46,14 @@ export class AllLeavesComponent implements OnInit {
         lengthMenu: [5, 10, 25],
         processing: true
       };
-    }, 300000);
+    }, 300);
 
 
   }
 
 
-  callApi(){
-    this._apiService.getLeaveApi(this.getLeaveURL).subscribe(data => {
+  callApi() {
+    this._apiService.getApi(this.getLeaveURL).subscribe(data => {
 
       this.data = data;
       this.datasize = data.length;
@@ -61,16 +70,15 @@ export class AllLeavesComponent implements OnInit {
   }
 
 
-  onDeleteId(id:string) {
+  onDeleteId(id: string) {
 
     if (confirm("Do you want to delete this leave?")) {
 
-      let delURL = "http://localhost:8084/api/v1/leave/"+id;
+      let delURL = "http://localhost:8084/api/v1/leave/" + id;
+      
       this._apiService.deleteLeaveApi(delURL).subscribe(data => {
-
         this.callApi();
-
-  
+        location.reload();
       });
 
     }
