@@ -24,6 +24,8 @@ export class AuthenticationService {
 
         localStorage.setItem('token', res.token);
         localStorage.setItem('userID', res.userID);
+        localStorage.setItem('username', res.username);
+
         localStorage.setItem('IsAuthenticated', "true");
 
         console.log(res);
@@ -52,6 +54,7 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('token');
     localStorage.removeItem('userID');
+    localStorage.removeItem('username');
     localStorage.removeItem('IsAuthenticated');
 
     location.reload();

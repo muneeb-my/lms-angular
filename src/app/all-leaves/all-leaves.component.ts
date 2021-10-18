@@ -53,7 +53,7 @@ export class AllLeavesComponent implements OnInit {
 
 
   callApi() {
-    this._apiService.getApi(this.getLeaveURL).subscribe(data => {
+    this._apiService.getApi(this.getLeaveURL+"/"+localStorage.getItem('userID')).subscribe(data => {
 
       this.data = data;
       this.datasize = data.length;

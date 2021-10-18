@@ -14,6 +14,7 @@ export class AppComponent {
   title = 'lms';
 
   IsAuthenticated = false;
+ public  username = localStorage.getItem('username');
 
    authenticationServices:AuthenticationService ;
 
